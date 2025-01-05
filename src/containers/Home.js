@@ -72,7 +72,7 @@ export default function Home() {
                     </ListGroup.Item>
                 </LinkContainer>
                 {currentNotes.map(({ noteId, content, createdAt }) => (
-                    <LinkContainer key={noteId} to={/notes/${noteId}}>
+                    <LinkContainer key={noteId} to={`/notes/${noteId}`}>
                         <ListGroup.Item action>
                             {/* {imageUrl && (
                                 <img
