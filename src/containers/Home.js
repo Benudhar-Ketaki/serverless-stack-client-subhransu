@@ -16,7 +16,7 @@ export default function Home() {
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState("");
     const notesPerPage = 5;
-    const BASE_URL = "https://notes-api-uploads.s3.us-east-1.amazonaws.com";
+    // const BASE_URL = "https://notes-api-uploads.s3.us-east-1.amazonaws.com";
 
     useEffect(() => {
         async function onLoad() {
@@ -56,7 +56,7 @@ export default function Home() {
         const indexOfLastNote = currentPage * notesPerPage;
         const indexOfFirstNote = indexOfLastNote - notesPerPage;
         const currentNotes = notesToRender.slice(indexOfFirstNote, indexOfLastNote);
-        const imageUrl = ${BASE_URL};
+        // const imageUrl = ${BASE_URL};
 
         return (
             <>
