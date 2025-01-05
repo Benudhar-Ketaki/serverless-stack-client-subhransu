@@ -56,7 +56,6 @@ export default function Home() {
         const indexOfLastNote = currentPage * notesPerPage;
         const indexOfFirstNote = indexOfLastNote - notesPerPage;
         const currentNotes = notesToRender.slice(indexOfFirstNote, indexOfLastNote);
-        const imageUrl = ${BASE_URL};
 
         return (
             <>
