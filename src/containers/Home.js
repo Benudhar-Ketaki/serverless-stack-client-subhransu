@@ -16,7 +16,7 @@ export default function Home() {
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState("");
     const notesPerPage = 5;
-    const BASE_URL = "https://notes-api-uploads.s3.us-east-1.amazonaws.com";
+    // const BASE_URL = "https://notes-api-uploads.s3.us-east-1.amazonaws.com";
 
     useEffect(() => {
         async function onLoad() {
@@ -56,6 +56,12 @@ export default function Home() {
         const indexOfLastNote = currentPage * notesPerPage;
         const indexOfFirstNote = indexOfLastNote - notesPerPage;
         const currentNotes = notesToRender.slice(indexOfFirstNote, indexOfLastNote);
+        // const safeContent = typeof content === "string" ? content : "No content available";
+        // const safeAttachment = typeof attachment === "string" ? attachment : null;
+
+        // const filePath = private/${userId}/${safeAttachment};
+        // const encodedKey = encodeURIComponent(filePath);
+        // const imageUrl = ${BASE_URL};
 
         return (
             <>
@@ -66,24 +72,16 @@ export default function Home() {
                     </ListGroup.Item>
                 </LinkContainer>
                 {currentNotes.map(({ noteId, content, createdAt }) => (
-                    const safeContent = typeof content === "string" ? content : "No content available";
-                    const safeAttachment = typeof attachment === "string" ? attachment : null;
-
-                    const filePath = `private/${userId}/${safeAttachment}`;
-                    const encodedKey = encodeURIComponent(filePath);
-                    const imageUrl = `${BASE_URL}/${encodedKey}`;
-
-                    
                     <LinkContainer key={noteId} to={/notes/${noteId}}>
                         <ListGroup.Item action>
-                            {imageUrl && (
+                            {/* {imageUrl && (
                                 <img
-                                    src={imageUrl}
-                                    alt={`Note ${safeContent.trim().split("\n")[0]}`}
+                                    src={"/default-image.png"}
+                                    alt={Note ${content.trim().split("\n")[0]}}
                                     className="note-image"
                                     onError={(e) => (e.target.src = "/default-image.png")}
                                 />
-                            )}
+                            )} */}
                             <span className="font-weight-bold">
                                 {content.trim().split("\n")[0]}
                             </span>
