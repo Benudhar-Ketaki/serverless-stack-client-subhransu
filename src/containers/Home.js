@@ -16,7 +16,6 @@ export default function Home() {
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState("");
     const notesPerPage = 5;
-    // const BASE_URL = "https://notes-api-uploads.s3.us-east-1.amazonaws.com";
 
     useEffect(() => {
         async function onLoad() {
@@ -26,7 +25,7 @@ export default function Home() {
             try {
                 const notes = await loadNotes();
                 setNotes(notes);
-                setFilteredNotes(notes); // Initialize filtered notes
+                setFilteredNotes(notes);
             } catch (e) {
                 onError(e);
             }
@@ -49,19 +48,13 @@ export default function Home() {
         );
 
         setFilteredNotes(filtered);
-        setCurrentPage(1); // Reset to the first page after search
+        setCurrentPage(1);
     }
 
     function renderNotesList(notesToRender) {
         const indexOfLastNote = currentPage * notesPerPage;
         const indexOfFirstNote = indexOfLastNote - notesPerPage;
         const currentNotes = notesToRender.slice(indexOfFirstNote, indexOfLastNote);
-        // const safeContent = typeof content === "string" ? content : "No content available";
-        // const safeAttachment = typeof attachment === "string" ? attachment : null;
-
-        // const filePath = private/${userId}/${safeAttachment};
-        // const encodedKey = encodeURIComponent(filePath);
-        // const imageUrl = ${BASE_URL};
 
         return (
             <>
@@ -74,14 +67,6 @@ export default function Home() {
                 {currentNotes.map(({ noteId, content, createdAt }) => (
                     <LinkContainer key={noteId} to={`/notes/${noteId}`}>
                         <ListGroup.Item action>
-                            {/* {imageUrl && (
-                                <img
-                                    src={"/default-image.png"}
-                                    alt={Note ${content.trim().split("\n")[0]}}
-                                    className="note-image"
-                                    onError={(e) => (e.target.src = "/default-image.png")}
-                                />
-                            )} */}
                             <span className="font-weight-bold">
                                 {content.trim().split("\n")[0]}
                             </span>
@@ -105,32 +90,27 @@ export default function Home() {
 
         return (
             <div className="pagination">
-                <a
-                    href="#"
+                <button
+                    disabled={currentPage === 1}
                     onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                 >
                     &laquo;
-                </a>
+                </button>
                 {pageNumbers.map((number) => (
-                    <a
+                    <button
                         key={number}
-                        href="#"
                         className={number === currentPage ? "active" : ""}
                         onClick={() => setCurrentPage(number)}
                     >
                         {number}
-                    </a>
+                    </button>
                 ))}
-                <a
-                    href="#"
-                    onClick={() =>
-                        setCurrentPage((prev) =>
-                            Math.min(prev + 1, pageNumbers.length)
-                        )
-                    }
+                <button
+                    disabled={currentPage === pageNumbers.length}
+                    onClick={() => setCurrentPage((prev) => Math.min(prev + 1, pageNumbers.length))}
                 >
                     &raquo;
-                </a>
+                </button>
             </div>
         );
     }
