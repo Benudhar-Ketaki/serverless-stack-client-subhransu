@@ -8,6 +8,24 @@
     font-weight: 600;
 }
 
+<<<<<<< HEAD
+=======
+/* Pagination links */
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+/* Style the active/current link */
+.pagination a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+
+>>>>>>> 74533490aca3d8c574ad2b37a46c6bfc26fce5e0
 .note-image {
     width: 80px;
     height: 80px;
@@ -16,3 +34,11 @@
     margin-right: 12px;
     border: 1px solid #ddd;
 }
+<<<<<<< HEAD
+=======
+
+/* Add a grey background color on mouse-over */
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+>>>>>>> 74533490aca3d8c574ad2b37a46c6bfc26fce5e0
