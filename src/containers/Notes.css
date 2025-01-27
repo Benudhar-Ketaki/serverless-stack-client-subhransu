@@ -2,3 +2,79 @@
     height: 300px;
     font-size: 1.5rem;
 }
+
+/* General button style */
+button {
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 12px 20px;
+    /* Adjusted padding for better button size */
+    text-transform: uppercase;
+    border-radius: 10px;
+    /* Rounded corners */
+    transition: all 0.3s ease;
+    margin: 10px 0;
+    /* Space between buttons */
+    width: 100%;
+    /* Full-width buttons */
+}
+
+/* Save button (Blue) */
+button[type="submit"] {
+    background-color: #007bff;
+    /* Blue background for Save */
+    color: white;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+    /* Darker blue on hover */
+    transform: scale(1.05);
+    /* Slight scale effect */
+}
+
+button[type="submit"]:disabled {
+    background-color: #dcdcdc;
+    color: #808080;
+    cursor: not-allowed;
+}
+
+/* Delete button (Red) */
+button.variant-danger {
+    background-color: #f44336;
+    /* Red background for Delete */
+    color: white;
+}
+
+button.variant-danger:hover {
+    background-color: #e53935;
+    /* Darker red on hover */
+    transform: scale(1.05);
+    /* Slight scale effect */
+}
+
+button.variant-danger:disabled {
+    background-color: #dcdcdc;
+    color: #808080;
+    cursor: not-allowed;
+}
+
+/* Loader Button styling */
+.loader-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Optional: Container padding and spacing */
+.Notes {
+    padding: 2rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+
+
+

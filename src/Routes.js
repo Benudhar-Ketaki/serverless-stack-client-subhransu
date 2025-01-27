@@ -7,6 +7,7 @@ import Signup from "./containers/Signup";
 import NewNote from "./containers/NewNote";
 import Notes from "./containers/Notes";
 import ForgetPassword from "./containers/ForgetPassword";
+import EmailUpdate from "./containers/EmailUpdate";
 
 export default function Routes() {
 
@@ -32,6 +33,9 @@ export default function Routes() {
 
             <Route exact path="/forget">
                 <ForgetPassword />
+            </Route>
+            <Route exact path="/emailchange">
+                <EmailUpdate />
             </Route>
 
             <Route>

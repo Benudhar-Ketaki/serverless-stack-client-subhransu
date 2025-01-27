@@ -41,9 +41,9 @@ export default function Notes() {
     function validateForm() {
         return content.length > 0;
     }
-    function formatFilename(str) {
-        return str.replace(/^\w+-/, "");
-    }
+    // function formatFilename(str) {
+    //     return str.replace(/^\w+-/, "");
+    // }
     function handleFileChange(event) {
         file.current = event.target.files[0];
     }
@@ -122,7 +122,7 @@ export default function Notes() {
                                     rel="noopener noreferrer"
                                     href={note.attachmentURL}
                                 >
-                                    {formatFilename(note.attachment)}
+                                    {note.attachment}
                                 </a>
                             </p>
                         )}

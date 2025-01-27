@@ -1,6 +1,7 @@
 .forgetPassword {
     text-align: right;
     padding-bottom: 5px;
+    color: black;
 }
 
 .forgetPassword:hover {
@@ -19,5 +20,169 @@
 
     .Login h2 {
         padding-bottom: 25px;
+        color: black;
     }
+}
+
+
+
+/* General Login Page Styling */
+.Login {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #1e1e1e;
+    /* Dark background */
+    border-radius: 15px;
+    /* Rounded corners */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+    /* Subtle shadow */
+    color: #e0e0e0;
+    /* Light text color */
+}
+
+/* Input Field Styling */
+.dark-input {
+    background: #2a2a2a;
+    /* Darker input background */
+    color: #e0e0e0;
+    /* Light text */
+    border: 1px solid #424242;
+    /* Subtle border */
+    border-radius: 8px;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.dark-input:focus {
+    border-color: #00bcd4;
+    /* Cyan border on focus */
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.6);
+    /* Glow effect */
+    outline: none;
+}
+
+/* Button Styling */
+.dark-button {
+    background: #00bcd4;
+    /* Vibrant cyan */
+    color: #121212;
+    /* Dark text for contrast */
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dark-button:disabled {
+    background: #424242;
+    /* Disabled button color */
+    color: #9e9e9e;
+    cursor: not-allowed;
+}
+
+.dark-button:hover:not(:disabled) {
+    background: #007a91;
+    /* Darker cyan on hover */
+    color: #ffffff;
+}
+
+/* Forgot Password Link */
+.forgetPassword span {
+    color: #9e9e9e;
+    /* Subtle gray for the link */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.forgetPassword span:hover {
+    color: #00bcd4;
+    /* Highlighted on hover */
+}
+
+/* Centering Title */
+.text-center {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* General Signup Page Styling */
+.Signup {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #1e1e1e;
+    /* Dark background */
+    border-radius: 15px;
+    /* Rounded corners */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+    /* Subtle shadow */
+    color: #e0e0e0;
+    /* Light text color */
+}
+
+/* Input Field Styling */
+.dark-input {
+    background: #2a2a2a;
+    /* Darker input background */
+    color: #e0e0e0;
+    /* Light text */
+    border: 1px solid #424242;
+    /* Subtle border */
+    border-radius: 8px;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.dark-input:focus {
+    border-color: #00bcd4;
+    /* Cyan border on focus */
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.6);
+    /* Glow effect */
+    outline: none;
+}
+
+/* Button Styling */
+.dark-button {
+    background: #00bcd4;
+    /* Vibrant cyan */
+    color: #121212;
+    /* Dark text for contrast */
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dark-button:disabled {
+    background: #424242;
+    /* Disabled button color */
+    color: #9e9e9e;
+    cursor: not-allowed;
+}
+
+.dark-button:hover:not(:disabled) {
+    background: #007a91;
+    /* Darker cyan on hover */
+    color: #ffffff;
+}
+
+/* Centering Title */
+.text-center {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Text Muted for Confirmation Code */
+.text-muted {
+    font-size: 0.9rem;
+    color: #bdbdbd;
 }

@@ -7,8 +7,10 @@ import { API } from "aws-amplify";
 import { BsPencilSquare } from "react-icons/bs";
 import { LinkContainer } from "react-router-bootstrap";
 import Form from "react-bootstrap/Form";
+import { Auth } from "aws-amplify";
 
 export default function Home() {
+    const [greet, setGreet] = useState();
     const { isAuthenticated } = useAppContext();
     const [filteredNotes, setFilteredNotes] = useState([]);
     const [notes, setNotes] = useState([]);
@@ -16,6 +18,7 @@ export default function Home() {
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState("");
     const notesPerPage = 5;
+    const BASE_URL = "https://notes-api-uploads-sekhar.s3.us-east-1.amazonaws.com";
 
     useEffect(() => {
         async function onLoad() {
@@ -25,7 +28,10 @@ export default function Home() {
             try {
                 const notes = await loadNotes();
                 setNotes(notes);
-                setFilteredNotes(notes); // Initialize filtered notes
+                setFilteredNotes(notes);
+                const user = await Auth.currentAuthenticatedUser();
+                const { attributes } = user;
+                setGreet(attributes.email); // Initialize filtered notes
             } catch (e) {
                 onError(e);
             }
@@ -64,8 +70,13 @@ export default function Home() {
                         <span className="ml-2 font-weight-bold">Create a new note</span>
                     </ListGroup.Item>
                 </LinkContainer>
-                {currentNotes.map(({ noteId, content, createdAt, attachment }) => {
-                    const imageUrl = attachment || "/default-image.png"; // Use default image if no attachment
+                {currentNotes.map(({ noteId, content, createdAt, attachment,userId }) => {
+                    const safeContent = typeof content === "string" ? content : "No content available";
+                    const safeAttachment = typeof attachment === "string" ? attachment : null;
+
+                    const filePath = `private/${userId}/${safeAttachment}`;
+                    const encodedKey = encodeURIComponent(filePath);
+                    const imageUrl = `${BASE_URL}/${encodedKey}`;
 
                     return (
                         <LinkContainer key={noteId} to={`/notes/${noteId}`}>
@@ -81,7 +92,7 @@ export default function Home() {
                                         {content.trim().split("\n")[0]}
                                     </span>
                                     <br />
-                                    <span className="text-muted">
+                                    <span className="created">
                                         Created: {new Date(createdAt).toLocaleString()}
                                     </span>
                                 </div>
@@ -93,6 +104,7 @@ export default function Home() {
         );
     }
 
+
     function renderPagination() {
         const totalNotes = filteredNotes.length;
         const pageNumbers = [];
@@ -102,38 +114,32 @@ export default function Home() {
 
         return (
             <div className="pagination">
-                <button
-                    className="page-link"
-                    disabled={currentPage === 1}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        setCurrentPage((prev) => Math.max(prev - 1, 1));
-                    }}
+                <a
+                    href="#"
+                    onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                 >
                     &laquo;
-                </button>
+                </a>
                 {pageNumbers.map((number) => (
-                    <button
+                    <a
                         key={number}
-                        className={`page-link ${number === currentPage ? "active" : ""}`}
-                        onClick={(e) => {
-                            e.preventDefault();
-                            setCurrentPage(number);
-                        }}
+                        href="#"
+                        className={number === currentPage ? "active" : ""}
+                        onClick={() => setCurrentPage(number)}
                     >
                         {number}
-                    </button>
+                    </a>
                 ))}
-                <button
-                    className="page-link"
-                    disabled={currentPage === pageNumbers.length}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        setCurrentPage((prev) => Math.min(prev + 1, pageNumbers.length));
-                    }}
+                <a
+                    href="#"
+                    onClick={() =>
+                        setCurrentPage((prev) =>
+                            Math.min(prev + 1, pageNumbers.length)
+                        )
+                    }
                 >
                     &raquo;
-                </button>
+                </a>
             </div>
         );
     }
@@ -150,6 +156,9 @@ export default function Home() {
     function renderNotes() {
         return (
             <div className="notes">
+                <h2>
+                    Welcome, <span>{greet}</span>
+                </h2>
                 <h2 className="pb-3 mt-4 mb-3 border-bottom">Your Notes</h2>
                 <Form className="mb-3">
                     <Form.Control

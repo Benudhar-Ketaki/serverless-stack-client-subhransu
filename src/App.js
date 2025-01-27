@@ -14,18 +14,14 @@ import { onError } from "./libs/errorLib";
 function App() {
 
   const [isAuthenticated, userHasAuthenticated] = useState(false);
-
+  const [isAuthenticating, setIsAuthenticating] = useState(true);
   const history = useHistory();
+
   async function handleLogout() {
     await Auth.signOut();
     userHasAuthenticated(false);
     history.push("/login");
   }
-
-
-
-  const [isAuthenticating, setIsAuthenticating] = useState(true);
-
   useEffect(() => {
     onLoad();
   }, []);
@@ -55,8 +51,12 @@ function App() {
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <Nav activeKey={window.location.pathname}>
-              {isAuthenticated ? (
-                <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+              {isAuthenticated ? (<>
+                <LinkContainer to="/emailchange">
+                  <Nav.Link>Change Email!</Nav.Link>
+                </LinkContainer>
+                <Nav.Link onClick={handleLogout}>Logout</Nav.Link></>
+
               ) : (
                 <>
                   <LinkContainer to="/signup">
