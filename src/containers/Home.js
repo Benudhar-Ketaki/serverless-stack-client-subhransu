@@ -71,7 +71,7 @@ export default function Home() {
                     </ListGroup.Item>
                 </LinkContainer>
                 {currentNotes.map(({ noteId, content, createdAt, attachment,userId }) => {
-                    const safeContent = typeof content === "string" ? content : "No content available";
+                    // const safeContent = typeof content === "string" ? content : "No content available";
                     const safeAttachment = typeof attachment === "string" ? attachment : null;
 
                     const filePath = `private/${userId}/${safeAttachment}`;
@@ -158,7 +158,7 @@ export default function Home() {
             <div className="notes">
                 <h2>
                     Welcome, <span>{greet}</span>
-                </h2>
+        </h2>
                 <h2 className="pb-3 mt-4 mb-3 border-bottom">Your Notes</h2>
                 <Form className="mb-3">
                     <Form.Control
