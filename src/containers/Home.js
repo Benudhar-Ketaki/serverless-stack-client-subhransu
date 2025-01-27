@@ -115,7 +115,7 @@ export default function Home() {
         return (
             <div className="pagination">
                 <a
-                    href="#"
+                    href="/"
                     onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                 >
                     &laquo;
@@ -123,7 +123,7 @@ export default function Home() {
                 {pageNumbers.map((number) => (
                     <a
                         key={number}
-                        href="#"
+                        href="/"
                         className={number === currentPage ? "active" : ""}
                         onClick={() => setCurrentPage(number)}
                     >
@@ -131,7 +131,7 @@ export default function Home() {
                     </a>
                 ))}
                 <a
-                    href="#"
+                    href="/"
                     onClick={() =>
                         setCurrentPage((prev) =>
                             Math.min(prev + 1, pageNumbers.length)
